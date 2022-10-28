@@ -1,4 +1,20 @@
+var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Cors
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("https://*.com")
+                   .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddControllers();
+
 
 // Add services to the container.
 
