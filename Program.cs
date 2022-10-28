@@ -1,20 +1,4 @@
-var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
 var builder = WebApplication.CreateBuilder(args);
-
-// Add Cors
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        policy =>
-        {
-            policy.WithOrigins("*")
-                   .AllowAnyHeader();
-        });
-});
-
-builder.Services.AddControllers();
-
 
 // Add services to the container.
 
@@ -22,6 +6,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//services cors
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("http://localhost:7145", "https://hng-task-intro.herokuapp.com/intro");
+    //builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -32,11 +23,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("corsapp");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.UseCors();
 
 app.MapControllers();
 
