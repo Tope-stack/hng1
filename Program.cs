@@ -10,8 +10,8 @@ builder.Services.AddSwaggerGen();
 //services cors
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
-    builder.WithOrigins("http://localhost:7145", "https://hng-task-intro.herokuapp.com/intro");
-    //builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    //builder.WithOrigins("http://localhost:7145", "https://hng-task-intro.herokuapp.com/intro");
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
 var app = builder.Build();
