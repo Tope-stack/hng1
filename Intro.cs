@@ -7,4 +7,7 @@
         public int age { get; set; } = 0;
         public string bio { get; set; } = "";
     }
+
+
+    
 }

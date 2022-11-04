@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace hng_task_1.Controllers
 {
@@ -18,5 +21,41 @@ namespace hng_task_1.Controllers
             
             return Ok(intro);
         }
+
+        [HttpPost("calculate")]
+
+        public IActionResult Index([Required] int x, [Required] int y, [Required] operation operation)
+        {
+            var operation_type = operation.ToString();
+            int result = 0;
+            switch(operation)
+            {
+                case operation.addition:
+                    result = x + y;
+                    break;
+
+                case operation.subtraction:
+                    result = x - y;
+                    break;
+
+                case operation.multiplication:
+                    result = x * y;
+                    break;
+
+                default:
+                    break;
+            }
+
+            var resultOutro = new Outro
+            {
+                slackUsername = "Temitope_X",
+                operation_type = operation_type,
+                result = result
+            };
+
+            return Ok(resultOutro);
+        }
     }
 }
+
+
