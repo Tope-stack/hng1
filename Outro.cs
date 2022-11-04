@@ -6,6 +6,6 @@
 
         public int result { get; set; }
 
-        public string operation_type { get; set; }
+        public operation_type operation_type { get; set; }
     }
 }

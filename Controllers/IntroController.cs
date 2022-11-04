@@ -24,21 +24,21 @@ namespace hng_task_1.Controllers
 
         [HttpPost("calculate")]
 
-        public IActionResult Index([Required] int x, [Required] int y, [Required] operation operation)
+        public IActionResult Index([Required] int x, [Required] int y, [Required] operation_type operation)
         {
-            var operation_type = operation.ToString();
+           var operationType = operation.ToString();
             int result = 0;
             switch(operation)
             {
-                case operation.addition:
+                case operation_type.addition:
                     result = x + y;
                     break;
 
-                case operation.subtraction:
+                case operation_type.subtraction:
                     result = x - y;
                     break;
 
-                case operation.multiplication:
+                case operation_type.multiplication:
                     result = x * y;
                     break;
 
@@ -50,7 +50,6 @@ namespace hng_task_1.Controllers
             {
                 slackUsername = "Temitope_X",
                 result = result,
-                operation_type = operation_type
             };
 
             return Ok(resultOutro);

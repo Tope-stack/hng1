@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace hng_task_1
 {
-    public enum operation
+    public enum operation_type
     {
         addition,
         subtraction,
