@@ -27,7 +27,7 @@ namespace hng_task_1.Controllers
         public IActionResult Index([Required] int x, [Required] int y, [Required] string operation_type)
         {
            //var operationType = operation.ToString();
-            int result = 0;
+            int result;
             switch(operation_type)
             {
                 case "addition":
@@ -43,10 +43,16 @@ namespace hng_task_1.Controllers
                     break;
 
                 default:
+                    result = 00;
                     break;
             }
 
             var resultOutro = new Outro();
+
+            if (result == 00)
+            {
+                return BadRequest("Invalid operation");
+            }
 
             resultOutro.slackUsername = "Temitope_X";
             resultOutro.result = result;
