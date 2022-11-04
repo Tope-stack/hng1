@@ -49,8 +49,8 @@ namespace hng_task_1.Controllers
             var resultOutro = new Outro
             {
                 slackUsername = "Temitope_X",
-                operation_type = operation_type,
-                result = result
+                result = result,
+                operation_type = operation_type
             };
 
             return Ok(resultOutro);
