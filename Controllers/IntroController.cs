@@ -46,12 +46,11 @@ namespace hng_task_1.Controllers
                     break;
             }
 
-            var resultOutro = new Outro
-            {
-                slackUsername = "Temitope_X",
-                result = result,
-                operation_type = operation_type
-            };
+            var resultOutro = new Outro();
+
+            resultOutro.slackUsername = "Temitope_X";
+            resultOutro.result = result;
+            resultOutro.operation_type = operation_type;
 
             return Ok(resultOutro);
         }
