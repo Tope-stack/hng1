@@ -24,22 +24,21 @@ namespace hng_task_1.Controllers
 
         [HttpPost("calculate")]
 
-        public IActionResult Index([Required] int x, [Required] int y, [Required] string operation_type)
+        public IActionResult Index([FromBody] Input inputRequest)
         {
-           //var operationType = operation.ToString();
             int result;
-            switch(operation_type)
+            switch(inputRequest.operation_type)
             {
                 case "addition":
-                    result = x + y;
+                    result = inputRequest.x + inputRequest.y;
                     break;
 
                 case "subtraction":
-                    result = x - y;
+                    result = inputRequest.x - inputRequest.y;
                     break;
 
                 case "multiplication":
-                    result = x * y;
+                    result = inputRequest.x * inputRequest.y;
                     break;
 
                 default:
@@ -47,16 +46,16 @@ namespace hng_task_1.Controllers
                     break;
             }
 
-            var resultOutro = new Outro();
-
             if (result == 00)
             {
                 return BadRequest("Invalid operation");
             }
 
+            var resultOutro = new Outro();
+
             resultOutro.slackUsername = "Temitope_X";
             resultOutro.result = result;
-            resultOutro.operation_type = operation_type;
+            resultOutro.operation_type = inputRequest.operation_type;
 
             return Ok(resultOutro);
         }
